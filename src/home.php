@@ -16,7 +16,7 @@
 		<div class="container">  
 
 			<div class="py-3 text-center">
-				<img class="d-block mx-auto mb-2" src="logo.png" alt="" width="72" height="72">
+				<img class="d-block mx-auto mb-2" src="logo-master.png" alt="" width="72" height="72">
 				<h2>Enviar Faturamento</h2>
 			</div>
 			<div class="d-flex justify-content-end">
