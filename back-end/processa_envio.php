@@ -40,6 +40,8 @@
     $mensagem->__set('anexo','anexo/' . basename($_FILES['arquivo']['name']));
     $mensagem->__set('hotel',$_POST['hotel']);
     $mensagem->__set('copia',$_POST['copia']);
+    $copia = $mensagem->__get('copia');
+    echo $copia;
     $file_tmp  = $_FILES['arquivo']['tmp_name'];
     $file_name = $_FILES['arquivo']['name'];
     move_uploaded_file($file_tmp,"anexo/".$file_name);
@@ -52,7 +54,7 @@
         //Server settings
         $mail->SMTPDebug = false;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
-        $mail->Host       = '';      //smtp.live.com              // Set the SMTP server to send through
+        $mail->Host       = 'smtp.live.com';      //smtp.live.com              // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
         $mail->Username   = 'deivite.santos@masterhoteis.com.br';                     // SMTP username
         $mail->Password   = 'd2912780';                               // SMTP password
@@ -64,7 +66,10 @@
         $mail->addAddress($mensagem->__get('para'));     // Add a recipient
         //$mail->addAddress('ellen@example.com');               // Name is optional
         $mail->addReplyTo($mensagem->__get('hotel'));
-        $mail->addCC($mensagem->__get('copia'));
+        if(!empty($copia)){
+            $mail->addCC($copia);
+        }
+        //$mail->addCC($mensagem->__get('copia'));
         //$mail->addBCC('bcc@example.com');
     
         // Attachments
@@ -74,7 +79,14 @@
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'FATURAMENTO: '. $mensagem->__get('fatura');
-        $mail->Body    = 'Mensagem padrao do Faturamento';
+        $mail->Body    = 'Ol&aacute; prezados, tudo bem?</br></br>
+ 
+        Segue em anexo o faturamento.</br>
+        Caso tenhamos mandado ao e-mail errado, por favor, nos informar para quem deveremos encaminhar, ou voc&ecirc;s podem nos pedir para cadastrar um e-mail em nosso registro e no e-mail que estiver cadastrado recebera todas as faturas da empresa.</br></br>
+
+        Obs.: Caso o boleto n&atilde;o for quitado na data do vencimento, ap&oacute;s 10 dias do vencimento o valor ser&aacute; protestado automaticamente.</br></br>
+        
+        Qualquer d&uacute;vida estou a disposi&ccedil;&atilde;o.';
         $mail->AltBody = 'Mensagem padrao do Faturamento';
     
         $mail->send();
