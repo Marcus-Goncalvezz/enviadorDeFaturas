@@ -20,6 +20,10 @@
   				
 					<div class="card-body font-weight-bold">
 						<form action="processa_envio.php" method="POST" enctype="multipart/form-data">
+							<input type="radio" name="hotel" id="" value='adm.royal@masterhoteis.com.br' checked>
+							<label for="hotel">Royal</label><br>
+							<input type="radio" name="hotel" value='adm.dompedro@masterhoteis.com.br' id="">
+							<label for="hotel">Dom Pedro</label>
 							<div class="form-group">
 								<label for="para">Para</label>
 								<input name='para' type="email" class="form-control" id="para" placeholder="joao@dominio.com.br" required>

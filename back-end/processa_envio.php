@@ -12,6 +12,7 @@
         private $para = null;
         private $fatura = null;
         private $anexo = null;
+        private $hotel = null;
         public $status = ['codigo_status' => null, 'descricao_status' => ''];
 
         public function __get($atributo){
@@ -36,6 +37,7 @@
     $mensagem->__set('fatura',$_FILES['arquivo']['name']);
     $mensagem->__set('fatura',$mensagem->tiraPdf());
     $mensagem->__set('anexo','anexo/' . basename($_FILES['arquivo']['name']));
+    $mensagem->__set('hotel',$_POST['hotel']);
     $file_tmp  = $_FILES['arquivo']['tmp_name'];
     $file_name = $_FILES['arquivo']['name'];
     move_uploaded_file($file_tmp,"anexo/".$file_name);
@@ -50,16 +52,16 @@
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.live.com';      //smtp.live.com              // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'vini-470@hotmail.com';                     // SMTP username
-        $mail->Password   = 'vinifui';                               // SMTP password
+        $mail->Username   = 'deivite.santos@masterhoteis.com.br';                     // SMTP username
+        $mail->Password   = 'd2912780';                               // SMTP password
         $mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
     
         //Recipients
-        $mail->setFrom('vini-470@hotmail.com', 'Marcus Gonçalves');
+        $mail->setFrom($mensagem->__get('hotel'));
         $mail->addAddress($mensagem->__get('para'));     // Add a recipient
         //$mail->addAddress('ellen@example.com');               // Name is optional
-        $mail->addReplyTo('vini-470@hotmail.com', 'Marcus Gonçalves');
+        $mail->addReplyTo($mensagem->__get('hotel'));
         //$mail->addCC('cc@example.com');
         //$mail->addBCC('bcc@example.com');
     
