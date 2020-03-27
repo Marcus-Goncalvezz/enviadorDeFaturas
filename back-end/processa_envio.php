@@ -41,7 +41,6 @@
     $mensagem->__set('hotel',$_POST['hotel']);
     $mensagem->__set('copia',$_POST['copia']);
     $copia = $mensagem->__get('copia');
-    echo $copia;
     $file_tmp  = $_FILES['arquivo']['tmp_name'];
     $file_name = $_FILES['arquivo']['name'];
     move_uploaded_file($file_tmp,"anexo/".$file_name);
@@ -62,12 +61,12 @@
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
     
         //Recipients
-        $mail->setFrom($mensagem->__get('hotel'));
-        $mail->addAddress($mensagem->__get('para'));     // Add a recipient
+        $mail->setFrom($mensagem->__get('hotel'),$mensagem->__get('hotel'));
+        $mail->addAddress($mensagem->__get('para'),$mensagem->__get('para'));     // Add a recipient
         //$mail->addAddress('ellen@example.com');               // Name is optional
-        $mail->addReplyTo($mensagem->__get('hotel'));
+        $mail->addReplyTo($mensagem->__get('hotel'),$mensagem->__get('hotel'));
         if(!empty($copia)){
-            $mail->addCC($copia);
+            $mail->addCC($copia,$copia);
         }
         //$mail->addCC($mensagem->__get('copia'));
         //$mail->addBCC('bcc@example.com');
@@ -87,7 +86,7 @@
         Obs.: Caso o boleto n&atilde;o for quitado na data do vencimento, ap&oacute;s 10 dias do vencimento o valor ser&aacute; protestado automaticamente.</br></br>
         
         Qualquer d&uacute;vida estou a disposi&ccedil;&atilde;o.';
-        $mail->AltBody = 'Mensagem padrao do Faturamento';
+        $mail->AltBody = 'Ola, segue em anexo o faturamento.';
     
         $mail->send();
         $mensagem->status['codigo_status'] = 1;
