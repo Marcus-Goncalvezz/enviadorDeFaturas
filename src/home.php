@@ -44,7 +44,7 @@
 								<input name='arquivo' type="file" class="form-control" id="file" placeholder="Assundo do e-mail" required accept="application/pdf">
 							</div>
 							<br>
-							<button type="submit" class="btn btn-primary btn-lg">Enviar Mensagem</button>
+							<button type="submit" class="btn btn-primary btn-lg">Enviar</button>
 						</form>
 						<?php 
 						if(isset($_GET['envio']) AND $_GET['envio'] == 'erro'){?>
