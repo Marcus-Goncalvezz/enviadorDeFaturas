@@ -13,6 +13,7 @@
         private $fatura = null;
         private $anexo = null;
         private $hotel = null;
+        private $copia = null;
         public $status = ['codigo_status' => null, 'descricao_status' => ''];
 
         public function __get($atributo){
@@ -38,6 +39,7 @@
     $mensagem->__set('fatura',$mensagem->tiraPdf());
     $mensagem->__set('anexo','anexo/' . basename($_FILES['arquivo']['name']));
     $mensagem->__set('hotel',$_POST['hotel']);
+    $mensagem->__set('copia',$_POST['copia']);
     $file_tmp  = $_FILES['arquivo']['tmp_name'];
     $file_name = $_FILES['arquivo']['name'];
     move_uploaded_file($file_tmp,"anexo/".$file_name);
@@ -50,7 +52,7 @@
         //Server settings
         $mail->SMTPDebug = false;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
-        $mail->Host       = 'smtp.live.com';      //smtp.live.com              // Set the SMTP server to send through
+        $mail->Host       = '';      //smtp.live.com              // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
         $mail->Username   = 'deivite.santos@masterhoteis.com.br';                     // SMTP username
         $mail->Password   = 'd2912780';                               // SMTP password
@@ -62,7 +64,7 @@
         $mail->addAddress($mensagem->__get('para'));     // Add a recipient
         //$mail->addAddress('ellen@example.com');               // Name is optional
         $mail->addReplyTo($mensagem->__get('hotel'));
-        //$mail->addCC('cc@example.com');
+        $mail->addCC($mensagem->__get('copia'));
         //$mail->addBCC('bcc@example.com');
     
         // Attachments
@@ -101,14 +103,14 @@
                 <div class='container text-center'>
                     <h1 class='display-4 text-success'>Sucesso</h1>
                     <p><?= $mensagem->status['descricao_status'] ?></p>
-                    <a href="index.php" class='btn btn-success btn-lg mt-5 text-white'>Voltar</a>
+                    <a href="home.php" class='btn btn-success btn-lg mt-5 text-white'>Voltar</a>
                 </div>
             <? } ?>
             <? if($mensagem->status['codigo_status'] == 2) {  ?>
                 <div class='container text-center'>
                     <h1 class='display-4 text-danger'>Ops!</h1>
                     <p><?= $mensagem->status['descricao_status'] ?></p>
-                    <a href="index.php" class='btn btn-danger btn-lg mt-5 text-white'>Voltar</a>
+                    <a href="home.php" class='btn btn-danger btn-lg mt-5 text-white'>Voltar</a>
                 </div>
                 <? } ?>
             </div>

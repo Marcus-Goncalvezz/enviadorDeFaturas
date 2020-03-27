@@ -33,7 +33,11 @@
 							<label for="hotel">Dom Pedro</label>
 							<div class="form-group">
 								<label for="para">Para</label>
-								<input name='para' type="email" class="form-control" id="para" placeholder="joao@dominio.com.br" required>
+								<input name='para' type="email" class="form-control" id="para" placeholder="empresa@faturamento.com.br" required>
+							</div>
+							<div class="form-group">
+								<label for="copia">CC</label>
+								<input name='copia' type="email" class="form-control" id="para" placeholder="E-mail em copia (se houver)">
 							</div>
 							<div class="form-group">
 								<label for="file">Anexo</label>
