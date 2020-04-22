@@ -56,6 +56,9 @@
                             <input type="password" name="senha" class="form-control" id=""><br>
                             <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
 						</form>
+                        <? if(isset($_GET['login'])) {?>
+                            <h5 class='text-danger'>Usuário ou senha incorretos</h5>
+                        <?}?>
 					</div>
 				</div>
       		</div>
