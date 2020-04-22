@@ -3,14 +3,6 @@
     
     $autenticacao = false;
 
-    /*$usuarios_app = [['email' => 'deivite.santos@masterhoteis.com.br', 'senha' => 'd2912780']]; // Definindo User e Senha
-    //foreach()
-    foreach($usuarios_app as $ident => $user) {
-        if($user['email'] == $_POST['email'] AND $user['senha'] == $_POST['senha']){
-            $autenticacao = true;
-        }
-    }*/
-
     function conectar(){ //Conexão com PDO e busca por email e senha
         $dsn = 'mysql:host=localhost;dbname=enviadorDeFaturas';
         $usuario = 'root';
