@@ -59,11 +59,7 @@
 							</div>
 							<br>
 							<button type="submit" class="btn btn-primary btn-lg">Enviar</button>
-						</form>
-						<?php 
-						if(isset($_GET['envio']) AND $_GET['envio'] == 'erro'){?>
-							<h1 class='text-center display-4 text-danger'>Não burle o sistema!</h1>
-						<?php } ?>						
+						</form>				
 					</div>
 				</div>
       		</div>

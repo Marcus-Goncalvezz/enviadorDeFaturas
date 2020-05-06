@@ -7,7 +7,7 @@
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
-
+    session_start();
     class Mensagem {
         private $para = null;
         private $fatura = null;
@@ -55,8 +55,8 @@
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.live.com';      //smtp.live.com              // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'deivite.santos@masterhoteis.com.br';                     // SMTP username
-        $mail->Password   = 'd2912780';                               // SMTP password
+        $mail->Username   = $_SESSION['email'];                     // SMTP username
+        $mail->Password   = $_SESSION['senha'];                               // SMTP password
         $mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
     

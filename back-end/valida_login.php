@@ -21,6 +21,7 @@
     $usuario = conectar();
     if(!empty($usuario['email']) && !empty($usuario['senha'])){
         $autenticacao = true;
+        $_SESSION = $usuario;
     }
     if($autenticacao){
         $_SESSION['autenticado'] = 'SIM';
